@@ -67,9 +67,11 @@ class CryptoTicker:
         self.last_update = 0
         self.last_coin_change = 0
         self.update_interval = 300  # Atualizar preços a cada 300 segundos
-        self.coin_change_interval = 10  # Alternar moeda a cada 3 segundos
-        self.prices = {}
+        self.coin_change_interval = 10  # Alternar moeda a cada 3 segundos        self.prices = {}
         self.main_group = displayio.Group()
+        self.is_display_rotated = True  # Inicia com o display rotacionado
+        self.button_press_start = None  # Controla o tempo de pressionamento do botão
+        display.rotation = 180  # Define a rotação inicial do display
         self.setup_display()
         self.connect_wifi()
         self.setup_requests()
@@ -89,6 +91,7 @@ class CryptoTicker:
         loading_text = label.Label(
             terminalio.FONT,
             text="Conectando WiFi...",
+            scale=3,
             color=0xFFFFFF,
             anchor_point=(0.5, 0.5),
             anchored_position=(WIDTH//2, HEIGHT//2)
@@ -127,6 +130,7 @@ class CryptoTicker:
         status_text = label.Label(
             terminalio.FONT,
             text=text,
+            scale=3,
             color=0xFFFFFF,
             anchor_point=(0.5, 0.5),
             anchored_position=(WIDTH//2, HEIGHT//2)
@@ -282,6 +286,12 @@ class CryptoTicker:
         self.next_coin()
         self.last_coin_change = time.monotonic()
         
+    def toggle_display_rotation(self):
+        """Alterna a rotação do display em 180 graus"""
+        self.is_display_rotated = not self.is_display_rotated
+        display.rotation = 180 if self.is_display_rotated else 0
+        display.refresh()
+        
     def run(self):
         """Loop principal da aplicação"""
         # Busca preços iniciais
@@ -296,13 +306,32 @@ class CryptoTicker:
         last_button1_state = True
         
         while True:
-            try:
-                # Verifica botão 0 (próxima moeda)
+            try:                # Verifica botão 0 (próxima moeda e rotação)
                 current_button0_state = button0.value
+                current_time = time.monotonic()
+                
+                # Detecta quando o botão é pressionado
                 if last_button0_state and not current_button0_state:
-                    print("Botão 0 pressionado - Próxima moeda")
-                    self.next_coin()
+                    self.button_press_start = current_time
+                
+                # Detecta quando o botão é solto
+                elif not last_button0_state and current_button0_state:
+                    if self.button_press_start is not None:
+                        # Se foi um pressionamento curto
+                        if current_time - self.button_press_start < 2:
+                            print("Botão 0 pressionado - Próxima moeda")
+                            self.next_coin()
+                        self.button_press_start = None
                     time.sleep(0.2)  # Debounce
+                
+                # Verifica pressionamento longo enquanto o botão está pressionado
+                elif not current_button0_state and self.button_press_start is not None:
+                    if current_time - self.button_press_start >= 2:
+                        print("Botão 0 pressionado por 2 segundos - Rotacionando tela")
+                        self.toggle_display_rotation()
+                        self.button_press_start = None
+                        time.sleep(0.2)  # Debounce
+                
                 last_button0_state = current_button0_state
                 
                 # Verifica botão 1 (moeda anterior)
