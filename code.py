@@ -25,8 +25,8 @@ button1.pull = digitalio.Pull.UP
 display = board.DISPLAY
 
 # Config Your Wifi Here
-WIFI_SSID = "Ap306"
-WIFI_PASSWORD = "127.0.0.1"
+WIFI_SSID = "CHANGE-FOR-YOUR-WIFI"
+WIFI_PASSWORD = "CHANGE-FOR-YOUR-PASSWORD"
 
 # CoinGecko API
 MARKET_API_URL = "http://api.coingecko.com/api/v3/coins/markets"
