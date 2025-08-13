@@ -2,31 +2,19 @@
 
 A CircuitPython-based cryptocurrency price ticker display project for the LilyGo T-Display-S3 that shows real-time prices and trends for your favorite cryptocurrencies.
 
-# Images
+# Project Gallery
 
-<p align="center">
-  <img src="/images/1.jpg" width="400" alt="Selection Screen">
-</p>
+<div align="center">
 
-<p align="center">
-  <img src="/images/2.jpg" width="400" alt="Price Display">
-</p>
+| Selection Screen | Price Display | Battery Status |
+|:---------------:|:-------------:|:--------------:|
+| <img src="/images/1.jpg" width="250" alt="Selection Screen"> | <img src="/images/2.jpg" width="250" alt="Price Display"> | <img src="/images/4.jpg" width="250" alt="Battery Status"> |
 
-<p align="center">
-  <img src="/images/4.jpg" width="400" alt="Battery Status">
-</p>
+| Price Changes | Display View | Full Device |
+|:------------:|:------------:|:-----------:|
+| <img src="/images/5.jpg" width="250" alt="Price Changes"> | <img src="/images/6.jpg" width="250" alt="Display View"> | <img src="/images/7.jpg" width="250" alt="Full Device View"> |
 
-<p align="center">
-  <img src="/images/5.jpg" width="400" alt="Price Changes">
-</p>
-
-<p align="center">
-  <img src="/images/6.jpg" width="400" alt="Display View">
-</p>
-
-<p align="center">
-  <img src="/images/7.jpg" width="400" alt="Full Device View">
-</p>
+</div>
 
 
 ## Features
