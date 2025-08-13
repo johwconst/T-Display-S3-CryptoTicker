@@ -6,11 +6,11 @@ A CircuitPython-based cryptocurrency price ticker display project for the LilyGo
 
 <div align="center">
 
-| Selection Screen | Price Display | Battery Status |
+|  |  |  |
 |:---------------:|:-------------:|:--------------:|
 | <img src="/images/1.jpg" width="250" alt="Selection Screen"> | <img src="/images/2.jpg" width="250" alt="Price Display"> | <img src="/images/4.jpg" width="250" alt="Battery Status"> |
 
-| Price Changes | Display View | Full Device |
+|  | |  |
 |:------------:|:------------:|:-----------:|
 | <img src="/images/5.jpg" width="250" alt="Price Changes"> | <img src="/images/6.jpg" width="250" alt="Display View"> | <img src="/images/7.jpg" width="250" alt="Full Device View"> |
 
